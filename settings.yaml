@@ -1,0 +1,8 @@
+alpaca:
+  api-key: "<api-key>"
+  api-secret: "<api-secret>"
+
+symbol-details:
+  VTI: 5
+  VGT: 8.0
+  COIN: 10.0
