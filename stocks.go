@@ -62,7 +62,7 @@ type Result struct {
 type Stock struct {
 	Symbol   string  `json:"symbol,omitempty"`
 	Price    float64 `json:"price,omitempty"`
-	Quantity float64 `json:"equity,omitempty"`
+	Quantity float64 `json:"quantity,omitempty"`
 	Value    float64 `json:"balance,omitempty"`
 }
 
