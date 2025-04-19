@@ -2,9 +2,9 @@ package structs
 
 type StockPrices struct {
 	Stocks     []Stock `json:"stocks,omitempty"`
-	TotalValue float64 `json:"totalValue,omitempty"`
-	Success    *bool   `json:"success,omitempty"`
-	Error      string  `json:"error,omitempty"`
+	TotalValue float64 `json:"totalValue,omitempty" bson:"totalValue,omitempty"`
+	Success    *bool   `json:"success,omitempty" bson:"success,omitempty"`
+	Error      string  `json:"error,omitempty" bson:"error,omitempty"`
 }
 
 type Stock struct {
