@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	var result structs.Result
+	var result structs.StockPrices
 	yamlConfig := readYamlFile("settings.yaml", &result)
 	alpacaConfig := yamlConfig.Alpaca
 	symbolDetails := yamlConfig.SymbolDetails
@@ -53,7 +53,7 @@ func main() {
 	os.Exit(0)
 }
 
-func readYamlFile(filePath string, result *structs.Result) YamlConfig {
+func readYamlFile(filePath string, result *structs.StockPrices) YamlConfig {
 	b, err := os.ReadFile(filePath)
 	if err != nil {
 		printError(result, "Unable to read input file "+filePath)
@@ -75,7 +75,7 @@ type YamlConfig struct {
 	SymbolDetails map[string]float64 `yaml:"symbol-details"`
 }
 
-func printError(result *structs.Result, error string) {
+func printError(result *structs.StockPrices, error string) {
 	success := new(bool)
 	*success = false
 

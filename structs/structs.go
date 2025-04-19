@@ -1,6 +1,6 @@
 package structs
 
-type Result struct {
+type StockPrices struct {
 	Stocks     []Stock `json:"stocks,omitempty"`
 	TotalValue float64 `json:"totalValue,omitempty"`
 	Success    *bool   `json:"success,omitempty"`
