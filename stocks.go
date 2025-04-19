@@ -8,11 +8,12 @@ import (
 	"slices"
 
 	"github.com/alpacahq/alpaca-trade-api-go/v3/marketdata"
+	"github.com/nramin/stock-price/structs"
 	"gopkg.in/yaml.v3"
 )
 
 func main() {
-	var result Result
+	var result structs.Result
 	yamlConfig := readYamlFile("settings.yaml", &result)
 	alpacaConfig := yamlConfig.Alpaca
 	symbolDetails := yamlConfig.SymbolDetails
@@ -34,7 +35,7 @@ func main() {
 
 	for symbol, quote := range quotes {
 		value := quote.BidPrice * symbolDetails[symbol]
-		result.Stocks = append(result.Stocks, Stock{
+		result.Stocks = append(result.Stocks, structs.Stock{
 			Symbol:   symbol,
 			Price:    quote.BidPrice,
 			Quantity: symbolDetails[symbol],
@@ -52,21 +53,7 @@ func main() {
 	os.Exit(0)
 }
 
-type Result struct {
-	Stocks     []Stock `json:"stocks,omitempty"`
-	TotalValue float64 `json:"totalValue,omitempty"`
-	Success    *bool   `json:"success,omitempty"`
-	Error      string  `json:"error,omitempty"`
-}
-
-type Stock struct {
-	Symbol   string  `json:"symbol,omitempty"`
-	Price    float64 `json:"price,omitempty"`
-	Quantity float64 `json:"quantity,omitempty"`
-	Value    float64 `json:"value,omitempty"`
-}
-
-func readYamlFile(filePath string, result *Result) YamlConfig {
+func readYamlFile(filePath string, result *structs.Result) YamlConfig {
 	b, err := os.ReadFile(filePath)
 	if err != nil {
 		printError(result, "Unable to read input file "+filePath)
@@ -88,7 +75,7 @@ type YamlConfig struct {
 	SymbolDetails map[string]float64 `yaml:"symbol-details"`
 }
 
-func printError(result *Result, error string) {
+func printError(result *structs.Result, error string) {
 	success := new(bool)
 	*success = false
 
