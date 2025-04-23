@@ -48,7 +48,12 @@ func main() {
 	*success = true
 	result.Success = success
 
-	marshaledResult, _ := json.Marshal(result)
+	marshaledResult, err := json.Marshal(result)
+	if err != nil {
+		printError(&result, err.Error())
+		os.Exit(0)
+	}
+
 	fmt.Println(string(marshaledResult))
 	os.Exit(0)
 }
